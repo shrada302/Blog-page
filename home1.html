@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Page</title>
+    <style>
+        body {
+            background-color: #F5E6C8;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            display: inline-block;
+            padding: 10px;
+            border: 3px solid black;
+            background-color: white;
+        }
+        .photo-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 50%;
+            border: 2px solid brown;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eee;
+        }
+        .photo-text {
+            position: absolute;
+            width: 80%;
+            background: white;
+            padding: 10px;
+            font-size: 12px;
+            color: brown;
+            text-align: center;
+        }
+        .travel-box {
+            width: 60%;
+            background-color: pink;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .star {
+            position: absolute;
+            color: gold;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">travel</div>
+    <div class="photo-container">
+        <div class="photo-text">Wonderful to experience and see new things... I hope you are having fun taking part in the journey of my life</div>
+    </div>
+    <div class="travel-box"> <b>name:</b> of place <br> <b>location:</b> link </div>
+    <div class="travel-box"> <b>name:</b> of place <br> <b>location:</b> link </div>
+    
+    <script>
+        // JavaScript to generate random stars
+        function createStars() {
+            for (let i = 0; i < 5; i++) {
+                let star = document.createElement("div");
+                star.innerHTML = "★";
+                star.className = "star";
+                star.style.left = Math.random() * window.innerWidth + "px";
+                star.style.top = Math.random() * 150 + "px";
+                document.body.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
+</body>
+</html>
