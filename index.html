@@ -1,21 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BLOG</title>
-  <link rel="stylesheet" href="blog.css">
-  <!--top content  -->
+  <title>DAILYLIFE - BLOG</title>
   <link rel="icon" type="image" href="reading-book.png">
-  <!-- fontawsome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <!-- google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
-</head>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
 
+    body {
+      background: #eddfd8;
+      font-family: "Irish Grover", system-ui;
+    }
+
+    header {
+      background-color: #E7E7E7;
+      height: 65px;
+    }
+
+    header * {
+      color: plum;
+    }
+
+    header .logo {
+      float: left;
+      height: inherit;
+    }
+
+    header .logo-text {
+      margin: 9px;
+      font-family: "Irish Grover", system-ui;
+    }
+
+    header .logo-text span {
+      color: rgb(118, 9, 118);
+    }
+
+    header .menu-toggle {
+      display: none;
+      cursor: pointer;
+    }
+
+    header ul {
+      float: right;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    header ul li {
+      float: left;
+      position: relative;
+    }
+
+    header ul li a {
+      display: block;
+      padding: 22px;
+      font-size: 1.1em;
+      text-decoration: none;
+      background-color: rgb(231, 231, 231);
+    }
+
+    header ul li a:hover {
+      background-color: rgb(223, 227, 164);
+      transition: 0.6s;
+    }
+
+    .hero-section {
+      position: relative;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .hero-text {
+      color: white;
+      font-size: 2.5em;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      max-width: 900px;
+      line-height: 1.3;
+    }
+
+    .content-section {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5em;
+      color: #eab0d6;
+      margin-bottom: 50px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-bottom: 70px;
+    }
+
+    .category-card {
+      background-color: bisque;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+
+    .category-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 10px 10px 15px #9acce5;
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 30px 20px;
+    }
+
+    .card-content h3 {
+      color: rgb(118, 9, 118);
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+
+    .card-content p {
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .card-content button {
+      background-color: rgb(255, 122, 33);
+      color: black;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: "Irish Grover", system-ui;
+      font-size: 1em;
+    }
+
+    .card-content button:hover {
+      color: rgb(236, 34, 34);
+      background-color: rgb(213, 249, 255);
+    }
+
+    .featured-section {
+      background-color: azure;
+      padding: 60px 20px;
+      margin: 50px 0;
+    }
+
+    .featured-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .featured-row {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .featured-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .featured-row.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .featured-image {
+      flex: 1;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .featured-text {
+      flex: 1;
+    }
+
+    .featured-text h2 {
+      color: #eab0d6;
+      font-size: 2.2em;
+      margin-bottom: 20px;
+    }
+
+    .featured-text p {
+      color: #333;
+      font-size: 1.1em;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .featured-text a {
+      display: inline-block;
+      background-color: rgb(255, 122, 33);
+      color: black;
+      padding: 12px 35px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: all 0.3s;
+    }
+
+    .featured-text a:hover {
+      color: rgb(236, 34, 34);
+      background-color: rgb(213, 249, 255);
+    }
+
+    .social-footer {
+      background-color: azure;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .footer-image {
+      margin-bottom: 30px;
+    }
+
+    .footer-image img {
+      max-width: 600px;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .social-footer h4 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: rgb(118, 9, 118);
+    }
+
+    .social-footer p {
+      font-size: 1.3em;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-icons a img {
+      height: 40px;
+      transition: transform 0.3s;
+    }
+
+    .social-icons a img:hover {
+      transform: scale(1.2);
+    }
+
+    @media only screen and (max-width: 768px) {
+      .hero-text {
+        font-size: 1.8em;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-row,
+      .featured-row.reverse {
+        flex-direction: column;
+      }
+
+      .section-title {
+        font-size: 2em;
+      }
+
+      header .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        font-size: 1.8em;
+      }
+
+      header ul {
+        width: 100%;
+        background: peru;
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      .showing {
+        max-height: 100em;
+      }
+
+      header ul li {
+        width: 100%;
+      }
+
+      .footer-image img {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
 <body>
   <header>
     <div class="logo">
@@ -23,104 +352,109 @@
     </div>
     <i class="fa fa-bars menu-toggle" aria-hidden="true"></i>
     <ul class="nav">
-      <li><a href="index.html">HOME</a></li>
+      <li><a href="blog.html">HOME</a></li>
       <li><a href="travel.html">TRAVEL</a></li>
       <li><a href="food.html">FOOD</a></li>
-      <!-- <li>
-        <a href="#">
-          <i class="fa fa-user"></i>
-          BLOG
-          <i class="fa fa-chevron-down" style="font-size: .8em;"></i>
-        </a>
-        <ul>
-          <li><a href="#">signup</a></li>
-          <li><a href="#" class="logout">logout</a></li>
-        </ul>
-      </li> -->
     </ul>
   </header>
-  <!--quarney min js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- custom script -->
-  <script src=".js/script.js"></script>
 
-  <div class="image-container">
-    <img src="blog1.jpg" alt="Placeholder Image">
-    <p class="description">THE BEAUTIFUL RAYS OF THE MORNING LIGHT THAT COMES AFTER THE HEAVEY NIGHT DESTROYING THE
-      DARKNESS OF EACH INDIVIDUAL. </p>
+  <div class="hero-section">
+    <img src="blog1.jpg" alt="Morning Light">
+    <div class="hero-overlay">
+      <h1 class="hero-text">THE BEAUTIFUL RAYS OF THE MORNING LIGHT THAT COMES AFTER THE HEAVY NIGHT DESTROYING THE DARKNESS OF EACH INDIVIDUAL</h1>
+    </div>
   </div>
-  <!-- div,div,div,div -->
-  <div class="container2">
 
-    <div class="abcd">
-      <img src="travel2.avif" class="img" height="250px" width="250px">
-      <h3>TRAVEL</h3>
-      <p>MOUNT FOUSI- enhancing the beauty of nature along with peace</p>
-      <button a href="travel.html" class="read more">read more</button>
-    </div>
-
-
-    <div class="abcd">
-      <img src="food.avif" class="img" height="250px" width="250px">
-      <h3>FOOD</h3>
-      <p>LIFE FEELS SATISFACTED WHEN FOOD IS DELICIOUS</p>
-      <button a href="food.html" class="read more">read more</button>
-    </div>
-
-    <div class="abcd">
-      <img src="blog1.jpg" class="img" height="250px" width="250px">
-      <h3>HOME</h3>
-      <p>LET'S GO BACK TO SQUARE ONE</p>
-      <button a href="home.html" class="read more">read more</button>
-    </div>
-
-    <!-- travel blog -->
-   
-    <div class="img-container">
-      <img src="travel4.jpg" alt="Travel Image">
-    </div>
-    <div class="link-container">
-      <h2>Travel Description</h2>
-      <p1>
-        Explore the world and discover new experiences. From the breathtaking landscapes of Iceland to the bustling
-        streets of Tokyo, there's a whole world waiting for you. Plan your next adventure today!
-      </p1>
-      <a href="https://en.wikipedia.org/wiki/Japan" target="_blank" rel="noopener noreferrer"><button1
-          class="read1">read</button1></a>
-    </div>
-
-    <!-- food blog -->
+  <div class="content-section">
+    <h2 class="section-title">Explore Our World</h2>
     
-    <div class="img-container">
-        <img src="food4.jpg" alt="Food Image">
-    </div>
-    <div class="link-container">
-        <h2>Food Description</h2>
-        <p1>
-            Indulge in the world of flavors and discover new tastes. From the exquisite sushi of Japan to the mouthwatering pasta of Italy, there's a whole culinary world waiting for you. Satisfy your taste buds today!
-        </p1>
-        <a href="https://en.wikipedia.org/wiki/Japan" target="_blank" rel="noopener noreferrer"><button1
-          class="read1">read</button1></a>
-</div>
-      
-     
-      <div class="social-icons">
-        <img src="travel.jpg" alt="Your Image" width="600" height="500">
-        
-        <a href="https://www.facebook.com/shrada.adki?mibextid=ZbWKwL" target="_blank">
-          <img src="facebook.jpg" height="40px" alt="Facebook">
-        </a>
-        <a href="https://www.instagram.com/_lets_get_disappear_?igsh=MWNxNmdhc2ExZ2oxdg==" target="_blank">
-          <img src="instagram.jpg" height="40px" alt="Instagram">
-        </a>
-        <h4>Thank you for visiting!</h4>
-        <p href="nice" >Have a nice day! </p>
+    <div class="categories-grid">
+      <div class="category-card">
+        <img src="travel2.avif" alt="Travel">
+        <div class="card-content">
+          <h3>TRAVEL</h3>
+          <p>MOUNT FOUSI - Enhancing the beauty of nature along with peace</p>
+          <button onclick="window.location.href='travel.html'">Read More</button>
+        </div>
       </div>
-  
-   
-  
-</body>
 
+      <div class="category-card">
+        <img src="food.avif" alt="Food">
+        <div class="card-content">
+          <h3>FOOD</h3>
+          <p>LIFE FEELS SATISFIED WHEN FOOD IS DELICIOUS</p>
+          <button onclick="window.location.href='food.html'">Read More</button>
+        </div>
+      </div>
+
+      <div class="category-card">
+        <img src="blog1.jpg" alt="Home">
+        <div class="card-content">
+          <h3>LIFESTYLE</h3>
+          <p>LET'S GO BACK TO SQUARE ONE</p>
+          <button onclick="window.location.href='blog.html'">Read More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-section">
+    <div class="featured-content">
+      <div class="featured-row">
+        <div class="featured-image">
+          <img src="travel4.jpg" alt="Travel Destination">
+        </div>
+        <div class="featured-text">
+          <h2>Travel Description</h2>
+          <p>
+            Explore the world and discover new experiences. From the breathtaking landscapes 
+            of Iceland to the bustling streets of Tokyo, there's a whole world waiting for you. 
+            Plan your next adventure today!
+          </p>
+          <a href="https://en.wikipedia.org/wiki/Japan" target="_blank" rel="noopener noreferrer">Read More</a>
+        </div>
+      </div>
+
+      <div class="featured-row reverse">
+        <div class="featured-image">
+          <img src="food4.jpg" alt="Delicious Food">
+        </div>
+        <div class="featured-text">
+          <h2>Food Description</h2>
+          <p>
+            Indulge in the world of flavors and discover new tastes. From the exquisite sushi 
+            of Japan to the mouthwatering pasta of Italy, there's a whole culinary world waiting 
+            for you. Satisfy your taste buds today!
+          </p>
+          <a href="https://en.wikipedia.org/wiki/Japan" target="_blank" rel="noopener noreferrer">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-footer">
+    <div class="footer-image">
+      <img src="travel.jpg" alt="Journey">
+    </div>
+    <h4>Thank you for visiting!</h4>
+    <p>Have a nice day!</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/shrada.adki?mibextid=ZbWKwL" target="_blank">
+        <img src="facebook.jpg" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com/_lets_get_disappear_?igsh=MWNxNmdhc2ExZ2oxdg==" target="_blank">
+        <img src="instagram.jpg" alt="Instagram">
+      </a>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.menu-toggle').on('click', function() {
+        $('.nav').toggleClass('showing');
+      });
+    });
+  </script>
+</body>
 </html>
